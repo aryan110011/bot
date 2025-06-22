@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Start WhatsApp Bot</title>
+</head>
+<body>
+  <h2>WhatsApp Bot Launcher</h2>
+  <form id="startForm">
+    <label>Bot Name:</label><br>
+    <input type="text" name="botName" required><br><br>
+
+    <label>Admin Number (without +91):</label><br>
+    <input type="text" name="adminNumber" required><br><br>
+
+    <label>Upload cred.json:</label><br>
+    <input type="file" name="credFile" accept=".json" required><br><br>
+
+    <button type="submit">Launch Bot</button>
+  </form>
+
+  <script>
+    document.getElementById("startForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+
+      fetch("/launch", {
+        method: "POST",
+        body: formData
+      }).then(res => res.text()).then(alert);
+    });
+  </script>
+</body>
+</html>
